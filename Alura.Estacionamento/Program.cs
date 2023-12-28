@@ -9,7 +9,7 @@ namespace Alura.Estacionamento
     {
         // Cria uma lista de objetos do tipo veículos, para armazenar
         // os veículos (automovéis e motos) que estão no estacionamento;
-        static Patio estacionamento = new Patio();         
+        static ParkingArea estacionamento = new ParkingArea();         
 
         static void Main(string[] args)
         {
@@ -30,7 +30,7 @@ namespace Alura.Estacionamento
         {
             Console.Clear();
             Console.WriteLine(" Veículos Estacionados");
-            foreach (Veiculo v in estacionamento.Veiculos)
+            foreach (Vehicle v in estacionamento.Veiculos)
             {
                 // placa, proprietario, hora
                 Console.WriteLine("Placa :{0}", v.Placa);
@@ -79,8 +79,8 @@ namespace Alura.Estacionamento
         static void RegistrarEntradaMotocicleta()
         {
             Console.WriteLine("Dados da Motocicleta");
-            Veiculo moto = new Veiculo();
-            moto.Tipo = TipoVeiculo.Motocicleta;
+            Vehicle moto = new Vehicle();
+            moto.Tipo = VehicleType.Motocicleta;
             //preeencher placa,cor,hora,entrada e proprietário
             Console.Write("Digite os dados da placa (XXX-9999): ");
             try
@@ -109,8 +109,8 @@ namespace Alura.Estacionamento
         static void RegistrarEntradaAutomovel()
         {
             Console.WriteLine("Dados do Automovél");
-            Veiculo carro = new Veiculo();
-            carro.Tipo = TipoVeiculo.Automovel;
+            Vehicle carro = new Vehicle();
+            carro.Tipo = VehicleType.Automovel;
             //preeencher placa,cor,hora,entrada e proprietário.
             Console.Write("Digite os dados da placa (XXX-9999): ");
             try

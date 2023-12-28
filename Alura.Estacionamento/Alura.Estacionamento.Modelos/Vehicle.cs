@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace Alura.Estacionamento.Modelos
 {
-    public class Veiculo
+    public class Vehicle
     {
         //Campos    
         private string _placa;
         private string _proprietario;
-        private TipoVeiculo _tipo;
+        private VehicleType _tipo;
      
         //Propriedades   
 
@@ -71,7 +71,7 @@ namespace Alura.Estacionamento.Modelos
         }
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }   
-        public TipoVeiculo Tipo { get => _tipo; set => _tipo = value; }
+        public VehicleType Tipo { get => _tipo; set => _tipo = value; }
 
         //Métodos
         public void Acelerar(int tempoSeg)
@@ -85,12 +85,12 @@ namespace Alura.Estacionamento.Modelos
         }
                
         //Construtor
-        public Veiculo()
+        public Vehicle()
         {
 
         }
 
-        public Veiculo(string proprietario)
+        public Vehicle(string proprietario)
         {
            Proprietario = proprietario;
         }

@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Alura.Estacionamento.Modelos
 {
-    public class Patio
+    public class ParkingArea
     {
        
-        public Patio()
+        public ParkingArea()
         {
             Faturado = 0;
-            veiculos = new List<Veiculo>();
+            veiculos = new List<Vehicle>();
         }
-        private List<Veiculo> veiculos;
+        private List<Vehicle> veiculos;
         private double faturado;
         public double Faturado { get => faturado; set => faturado = value; }
-        public List<Veiculo> Veiculos { get => veiculos; set => veiculos = value; }       
+        public List<Vehicle> Veiculos { get => veiculos; set => veiculos = value; }       
         public double TotalFaturado()
         {
             return this.Faturado;
@@ -31,7 +31,7 @@ namespace Alura.Estacionamento.Modelos
             return totalfaturado;
         }
 
-        public void RegistrarEntradaVeiculo(Veiculo veiculo)
+        public void RegistrarEntradaVeiculo(Vehicle veiculo)
         {
             veiculo.HoraEntrada = DateTime.Now;            
             this.Veiculos.Add(veiculo);            
@@ -39,17 +39,17 @@ namespace Alura.Estacionamento.Modelos
 
         public string RegistrarSaidaVeiculo(String placa)
         {
-            Veiculo procurado = null;
+            Vehicle procurado = null;
             string informacao=string.Empty;
 
-            foreach (Veiculo v in this.Veiculos)
+            foreach (Vehicle v in this.Veiculos)
             {
                 if (v.Placa == placa)
                 {
                     v.HoraSaida = DateTime.Now;
                     TimeSpan tempoPermanencia = v.HoraSaida - v.HoraEntrada;
                     double valorASerCobrado = 0;
-                    if (v.Tipo == TipoVeiculo.Automovel)
+                    if (v.Tipo == VehicleType.Automovel)
                     {
                         /// o método Math.Ceiling(), aplica o conceito de teto da matemática onde o valor máximo é o inteiro imediatamente posterior a ele.
                         /// Ex.: 0,9999 ou 0,0001 teto = 1
@@ -57,7 +57,7 @@ namespace Alura.Estacionamento.Modelos
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 2;
 
                     }
-                    if (v.Tipo == TipoVeiculo.Motocicleta)
+                    if (v.Tipo == VehicleType.Motocicleta)
                     {
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 1;
                     }
