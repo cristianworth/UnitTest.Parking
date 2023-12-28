@@ -49,7 +49,7 @@ namespace Alura.Estacionamento.Modelos
                     v.HoraSaida = DateTime.Now;
                     TimeSpan tempoPermanencia = v.HoraSaida - v.HoraEntrada;
                     double valorASerCobrado = 0;
-                    if (v.Tipo == VehicleType.Automovel)
+                    if (v.Tipo == EnumVehicleType.Car)
                     {
                         /// o método Math.Ceiling(), aplica o conceito de teto da matemática onde o valor máximo é o inteiro imediatamente posterior a ele.
                         /// Ex.: 0,9999 ou 0,0001 teto = 1
@@ -57,7 +57,7 @@ namespace Alura.Estacionamento.Modelos
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 2;
 
                     }
-                    if (v.Tipo == VehicleType.Motocicleta)
+                    if (v.Tipo == EnumVehicleType.Motorcycle)
                     {
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 1;
                     }

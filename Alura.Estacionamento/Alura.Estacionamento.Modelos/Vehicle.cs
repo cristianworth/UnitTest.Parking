@@ -10,7 +10,7 @@ namespace Alura.Estacionamento.Modelos
         //Campos    
         private string _placa;
         private string _proprietario;
-        private VehicleType _tipo;
+        private EnumVehicleType _tipo;
      
         //Propriedades   
 
@@ -71,7 +71,7 @@ namespace Alura.Estacionamento.Modelos
         }
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }   
-        public VehicleType Tipo { get => _tipo; set => _tipo = value; }
+        public EnumVehicleType Tipo { get => _tipo; set => _tipo = value; }
 
         //Métodos
         public void Acelerar(int tempoSeg)

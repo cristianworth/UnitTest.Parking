@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
 {
     //Enumeração para classificar os veículos em carros ou motos.
-    public enum VehicleType
+    public enum EnumVehicleType
     {
-        Automovel=0,
-        Motocicleta=1
+        Car=0,
+        Motorcycle=1
     }
 }

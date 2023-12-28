@@ -80,7 +80,7 @@ namespace Alura.Estacionamento
         {
             Console.WriteLine("Dados da Motocicleta");
             Vehicle moto = new Vehicle();
-            moto.Tipo = VehicleType.Motocicleta;
+            moto.Tipo = EnumVehicleType.Motorcycle;
             //preeencher placa,cor,hora,entrada e proprietário
             Console.Write("Digite os dados da placa (XXX-9999): ");
             try
@@ -110,7 +110,7 @@ namespace Alura.Estacionamento
         {
             Console.WriteLine("Dados do Automovél");
             Vehicle carro = new Vehicle();
-            carro.Tipo = VehicleType.Automovel;
+            carro.Tipo = EnumVehicleType.Car;
             //preeencher placa,cor,hora,entrada e proprietário.
             Console.Write("Digite os dados da placa (XXX-9999): ");
             try
