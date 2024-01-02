@@ -52,5 +52,22 @@ namespace Unit.Tests.Parking
         { 
             
         }
+
+        [Fact]
+        public void TestGetFormattedVehicleData()
+        {
+            // Arrange.
+            var vehicle = new Vehicle("Emily Davis", "QWZ-5154", "Green", "Santana", EnumVehicleType.Car);
+
+            // Act.
+            var formattedVehicleData = vehicle.ToString();
+
+            // Assert.
+            Assert.Contains("Owner: Emily Davis", formattedVehicleData);
+            Assert.Contains("Vehicle type: Car", formattedVehicleData);
+            Assert.Contains("Plate: QWZ-5154", formattedVehicleData);
+            Assert.Contains("Color: Green", formattedVehicleData);
+            Assert.Contains("Model: Santana", formattedVehicleData);
+        }
     }
 }

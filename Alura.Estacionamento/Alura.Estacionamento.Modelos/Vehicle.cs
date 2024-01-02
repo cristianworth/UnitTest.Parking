@@ -14,7 +14,7 @@ namespace Alura.Estacionamento.Modelos
         private string _placa;
         private string _proprietario;
         private EnumVehicleType _tipo;
-     
+
         //Propriedades   
 
         public string Placa
@@ -65,15 +65,15 @@ namespace Alura.Estacionamento.Modelos
         /// Framework, entre outros benefícios.
         /// </summary>
         public string Cor { get; set; }
-        public double Largura { get; set; }    
+        public double Largura { get; set; }
         public double VelocidadeAtual { get; set; }
-        public string Modelo { get; set; }        
+        public string Modelo { get; set; }
         public string Proprietario
         {
             get; set;
         }
         public DateTime HoraEntrada { get; set; }
-        public DateTime HoraSaida { get; set; }   
+        public DateTime HoraSaida { get; set; }
         public EnumVehicleType Tipo { get => _tipo; set => _tipo = value; }
 
         //Métodos
@@ -86,17 +86,17 @@ namespace Alura.Estacionamento.Modelos
         {
             this.VelocidadeAtual -= (tempoSeg * 15);
         }
-               
+
         //Construtor
         public Vehicle()
         {
 
         }
 
-        public Vehicle(string proprietario, string placa, string cor, string modelo)
+        public Vehicle(string proprietario, string placa, string cor, string modelo, EnumVehicleType vehicleType = EnumVehicleType.Car)
         {
             Proprietario = proprietario;
-            Tipo = EnumVehicleType.Car;
+            Tipo = vehicleType;
             Cor = cor;
             Modelo = modelo;
             Placa = placa;
@@ -104,7 +104,7 @@ namespace Alura.Estacionamento.Modelos
 
         public Vehicle(string proprietario)
         {
-           Proprietario = proprietario;
+            Proprietario = proprietario;
         }
 
         public void UpdateData(Vehicle changedVehicle)
@@ -113,6 +113,15 @@ namespace Alura.Estacionamento.Modelos
             this.Placa = changedVehicle.Placa;
             this.Cor = changedVehicle.Cor;
             this.Modelo = changedVehicle.Modelo;
+        }
+
+        public override string ToString()
+        {
+            return $"Owner: {this.Proprietario}; " +
+                    $"Vehicle type: {this.Tipo.ToString()}; " +
+                    $"Plate: {this.Placa}; " +
+                    $"Color: {this.Cor}; " +
+                    $"Model: {this.Modelo}";
         }
 
     }
