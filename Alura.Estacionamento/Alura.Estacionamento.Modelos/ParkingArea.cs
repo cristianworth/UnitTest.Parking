@@ -83,9 +83,21 @@ namespace Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        
+        public Vehicle SearchVehicle(string placa)
+        {
+            var vehicle = from Vehicle in this.Veiculos
+                          where Vehicle.Placa == placa
+                          select Vehicle;
 
-       
-    
+            return vehicle.SingleOrDefault();
+        }
+
+        public Vehicle UpdateVehicleData(Vehicle changedVehicle)
+        {
+            var existingVehicle = SearchVehicle(changedVehicle.Placa);
+            existingVehicle.UpdateData(changedVehicle);
+
+            return existingVehicle;
+        }
     }
 }

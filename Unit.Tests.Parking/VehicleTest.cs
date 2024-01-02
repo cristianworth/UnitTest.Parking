@@ -34,7 +34,7 @@ namespace Unit.Tests.Parking
             Assert.Equal(-150, vehicle.VelocidadeAtual);
         }
 
-        [Fact(DisplayName = "Vehicle is Car")]
+        [Fact(DisplayName = "Vehicle is a Car")]
         [Trait("Category", "Vehicle Type")]
         public void TestVehicleIsCar()
         {
@@ -46,7 +46,7 @@ namespace Unit.Tests.Parking
             Assert.Equal(EnumVehicleType.Car, vehicle.Tipo);
         }
 
-        [Fact(DisplayName = "Vehicle is Motorcycle", Skip = "Not implemented yet.")]
+        [Fact(DisplayName = "Vehicle is a Motorcycle", Skip = "Not implemented yet.")]
         [Trait("Category", "Vehicle Type")]
         public void TestVehicleIsMotorcycle() 
         { 

@@ -2,6 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 
 namespace Alura.Estacionamento.Modelos
 {
@@ -90,11 +93,27 @@ namespace Alura.Estacionamento.Modelos
 
         }
 
+        public Vehicle(string proprietario, string placa, string cor, string modelo)
+        {
+            Proprietario = proprietario;
+            Tipo = EnumVehicleType.Car;
+            Cor = cor;
+            Modelo = modelo;
+            Placa = placa;
+        }
+
         public Vehicle(string proprietario)
         {
            Proprietario = proprietario;
         }
 
-       
+        public void UpdateData(Vehicle changedVehicle)
+        {
+            this.Proprietario = changedVehicle.Proprietario;
+            this.Placa = changedVehicle.Placa;
+            this.Cor = changedVehicle.Cor;
+            this.Modelo = changedVehicle.Modelo;
+        }
+
     }
 }

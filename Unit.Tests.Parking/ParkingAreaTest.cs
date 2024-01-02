@@ -17,12 +17,7 @@ namespace Unit.Tests.Parking
         { 
             // Arrange.
             var parkingArea = new ParkingArea();
-            var vehicle = new Vehicle();
-            vehicle.Proprietario = "Cristian Weissmantel";
-            vehicle.Tipo = EnumVehicleType.Car;
-            vehicle.Cor = "Black";
-            vehicle.Modelo = "Palio";
-            vehicle.Placa = "asd-9999";
+            var vehicle = new Vehicle("Cristian Weissmantel", "asd-9999", "Black", "Palio");
 
             parkingArea.RegistrarEntradaVeiculo(vehicle);
             parkingArea.RegistrarSaidaVeiculo(vehicle.Placa);
@@ -46,13 +41,7 @@ namespace Unit.Tests.Parking
         {
             // Arrange.
             var parkingArea = new ParkingArea();
-            var vehicle = new Vehicle();
-            vehicle.Proprietario = proprietario;
-            vehicle.Tipo = EnumVehicleType.Car;
-            vehicle.Cor = cor;
-            vehicle.Modelo = modelo;
-            vehicle.Placa = placa;
-            
+            var vehicle = new Vehicle(proprietario, placa, cor, modelo);
             vehicle.Acelerar(10);
             vehicle.Frear(5);
 
@@ -64,6 +53,38 @@ namespace Unit.Tests.Parking
 
             // Assert.
             Assert.Equal(2, parkingFee);
+        }
+
+        [Theory]
+        [InlineData("John Doe", "ASD-1498", "Black", "Gol")]
+        public void FindVehicleByLicensePlate(string proprietario, string placa, string cor, string modelo) 
+        {
+            // Arrange.
+            var parkingArea = new ParkingArea();
+            var vehicle = new Vehicle(proprietario, placa, cor, modelo);
+            parkingArea.RegistrarEntradaVeiculo(vehicle);
+
+            // Act.
+            var vehicleFinded = parkingArea.SearchVehicle(vehicle.Placa);
+
+            // Assert.
+            Assert.Equal(placa, vehicleFinded.Placa);
+        }
+
+        [Fact]
+        public void UpdateVehicleColor() 
+        {
+            // Arrange.
+            var pargkingArea = new ParkingArea();
+            var initialVehicle = new Vehicle("Chris Wilson", "PLU-8472", "White", "Logan");
+            pargkingArea.RegistrarEntradaVeiculo(initialVehicle);
+            var updatedVehicleData = new Vehicle("Chris Wilson", "PLU-8472", "Black", "Logan");
+
+            // Act.
+            var updatedVehicle = pargkingArea.UpdateVehicleData(updatedVehicleData);
+
+            // Assert.
+            Assert.Equal(updatedVehicle.Cor, updatedVehicleData.Cor);
         }
     }
 }
