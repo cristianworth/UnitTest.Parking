@@ -14,6 +14,7 @@ namespace Alura.Estacionamento.Modelos
         private string _placa;
         private string _proprietario;
         private EnumVehicleType _tipo;
+        private string _ticket;
 
         //Propriedades   
 
@@ -74,7 +75,7 @@ namespace Alura.Estacionamento.Modelos
             {
                 return _proprietario;
             }
-            set 
+            set
             {
                 if (value.Length < 4)
                 {
@@ -86,6 +87,10 @@ namespace Alura.Estacionamento.Modelos
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
         public EnumVehicleType Tipo { get => _tipo; set => _tipo = value; }
+
+        public string IdTicket { get; set; }
+
+        public string TicketText { get { return _ticket; } set { _ticket = value; } }
 
         //Métodos
         public void Acelerar(int tempoSeg)

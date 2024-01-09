@@ -57,7 +57,7 @@ namespace Unit.Tests.Parking
 
         [Theory]
         [InlineData("John Doe", "ASD-1498", "Black", "Gol")]
-        public void FindVehicleByLicensePlate(string proprietario, string placa, string cor, string modelo) 
+        public void FindVehicleByIdTicket(string proprietario, string placa, string cor, string modelo) 
         {
             // Arrange.
             var parkingArea = new ParkingArea();
@@ -65,10 +65,10 @@ namespace Unit.Tests.Parking
             parkingArea.RegistrarEntradaVeiculo(vehicle);
 
             // Act.
-            var vehicleFinded = parkingArea.SearchVehicle(vehicle.Placa);
+            var vehicleFinded = parkingArea.SearchVehicle(vehicle.IdTicket);
 
             // Assert.
-            Assert.Equal(placa, vehicleFinded.Placa);
+            Assert.Contains("### Parking ticket ###", vehicleFinded.TicketText);
         }
 
         [Fact]
@@ -77,8 +77,8 @@ namespace Unit.Tests.Parking
             // Arrange.
             var pargkingArea = new ParkingArea();
             var initialVehicle = new Vehicle("Chris Wilson", "PLU-8472", "White", "Logan");
-            pargkingArea.RegistrarEntradaVeiculo(initialVehicle);
             var updatedVehicleData = new Vehicle("Chris Wilson", "PLU-8472", "Black", "Logan");
+            pargkingArea.RegistrarEntradaVeiculo(updatedVehicleData);
 
             // Act.
             var updatedVehicle = pargkingArea.UpdateVehicleData(updatedVehicleData);

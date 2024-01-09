@@ -10,7 +10,7 @@ namespace Alura.Estacionamento.Modelos
 {
     public class ParkingArea
     {
-       
+
         public ParkingArea()
         {
             Faturado = 0;
@@ -19,7 +19,7 @@ namespace Alura.Estacionamento.Modelos
         private List<Vehicle> veiculos;
         private double faturado;
         public double Faturado { get => faturado; set => faturado = value; }
-        public List<Vehicle> Veiculos { get => veiculos; set => veiculos = value; }       
+        public List<Vehicle> Veiculos { get => veiculos; set => veiculos = value; }
         public double TotalFaturado()
         {
             return this.Faturado;
@@ -33,14 +33,15 @@ namespace Alura.Estacionamento.Modelos
 
         public void RegistrarEntradaVeiculo(Vehicle veiculo)
         {
-            veiculo.HoraEntrada = DateTime.Now;            
-            this.Veiculos.Add(veiculo);            
+            veiculo.HoraEntrada = DateTime.Now;
+            CreateTicket(veiculo);
+            this.Veiculos.Add(veiculo);
         }
 
         public string RegistrarSaidaVeiculo(String placa)
         {
             Vehicle procurado = null;
-            string informacao=string.Empty;
+            string informacao = string.Empty;
 
             foreach (Vehicle v in this.Veiculos)
             {
@@ -62,8 +63,8 @@ namespace Alura.Estacionamento.Modelos
                         valorASerCobrado = Math.Ceiling(tempoPermanencia.TotalHours) * 1;
                     }
                     informacao = string.Format(" Hora de entrada: {0: HH: mm: ss}\n " +
-                                             "Hora de saída: {1: HH:mm:ss}\n "      +
-                                             "Permanência: {2: HH:mm:ss} \n "       +
+                                             "Hora de saída: {1: HH:mm:ss}\n " +
+                                             "Permanência: {2: HH:mm:ss} \n " +
                                              "Valor a pagar: {3:c}", v.HoraEntrada, v.HoraSaida, new DateTime().Add(tempoPermanencia), valorASerCobrado);
                     procurado = v;
                     this.Faturado = this.Faturado + valorASerCobrado;
@@ -83,10 +84,10 @@ namespace Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        public Vehicle SearchVehicle(string placa)
+        public Vehicle SearchVehicle(string idTicket)
         {
             var vehicle = from Vehicle in this.Veiculos
-                          where Vehicle.Placa == placa
+                          where Vehicle.IdTicket == idTicket
                           select Vehicle;
 
             return vehicle.SingleOrDefault();
@@ -94,10 +95,23 @@ namespace Alura.Estacionamento.Modelos
 
         public Vehicle UpdateVehicleData(Vehicle changedVehicle)
         {
-            var existingVehicle = SearchVehicle(changedVehicle.Placa);
+            var existingVehicle = SearchVehicle(changedVehicle.IdTicket);
             existingVehicle.UpdateData(changedVehicle);
 
             return existingVehicle;
+        }
+
+        public void CreateTicket(Vehicle vehicle)
+        {
+                        // Guid.NewGuid().ToString().Substring(0, 5);
+            var idTicket = Guid.NewGuid().ToString()[..5];
+            var ticketText = "### Parking ticket ###\n" +
+                                $">>> Ticket: {idTicket}\n" +
+                                $">>> Date: {DateTime.Now}\n" +
+                                $">>> Plate: {vehicle.Placa}\n";
+
+            vehicle.IdTicket = idTicket;
+            vehicle.TicketText = ticketText;
         }
     }
 }
