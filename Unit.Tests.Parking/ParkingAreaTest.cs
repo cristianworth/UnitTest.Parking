@@ -11,12 +11,18 @@ namespace Unit.Tests.Parking
 {
     public class ParkingAreaTest
     {
+        private ParkingArea parkingArea { get; set; }
+        public ParkingAreaTest() 
+        {
+            parkingArea = new ParkingArea();
+            parkingArea.ParkingOperator = new ParkingOperator("Sergio Ramos");
+        }
+
         [Fact(DisplayName = "Parking Fee single vehicle")]
         [Trait("Category", "Fee")]
         public void TestParkingFee()
         { 
             // Arrange.
-            var parkingArea = new ParkingArea();
             var vehicle = new Vehicle("Cristian Weissmantel", "asd-9999", "Black", "Palio");
 
             parkingArea.RegistrarEntradaVeiculo(vehicle);
@@ -40,7 +46,6 @@ namespace Unit.Tests.Parking
         public void ValidateVehiclesFee(string proprietario, string placa, string cor, string modelo)
         {
             // Arrange.
-            var parkingArea = new ParkingArea();
             var vehicle = new Vehicle(proprietario, placa, cor, modelo);
             vehicle.Acelerar(10);
             vehicle.Frear(5);
@@ -60,7 +65,6 @@ namespace Unit.Tests.Parking
         public void FindVehicleByIdTicket(string proprietario, string placa, string cor, string modelo) 
         {
             // Arrange.
-            var parkingArea = new ParkingArea();
             var vehicle = new Vehicle(proprietario, placa, cor, modelo);
             parkingArea.RegistrarEntradaVeiculo(vehicle);
 
@@ -75,13 +79,12 @@ namespace Unit.Tests.Parking
         public void UpdateVehicleColor() 
         {
             // Arrange.
-            var pargkingArea = new ParkingArea();
             var initialVehicle = new Vehicle("Chris Wilson", "PLU-8472", "White", "Logan");
             var updatedVehicleData = new Vehicle("Chris Wilson", "PLU-8472", "Black", "Logan");
-            pargkingArea.RegistrarEntradaVeiculo(updatedVehicleData);
+            parkingArea.RegistrarEntradaVeiculo(updatedVehicleData);
 
             // Act.
-            var updatedVehicle = pargkingArea.UpdateVehicleData(updatedVehicleData);
+            var updatedVehicle = parkingArea.UpdateVehicleData(updatedVehicleData);
 
             // Assert.
             Assert.Equal(updatedVehicle.Cor, updatedVehicleData.Cor);
